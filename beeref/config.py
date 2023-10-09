@@ -23,7 +23,7 @@ import os.path
 from PyQt6 import QtCore
 
 from beeref import constants
-from beeref.logging import qt_message_handler
+from beeref.logging_beeref import qt_message_handler
 
 
 logger = logging.getLogger(__name__)
@@ -193,7 +193,7 @@ logging_conf = {
             'level': CommandlineArgs().loglevel,
         },
         'file': {
-            'class': 'beeref.logging.BeeRotatingFileHandler',
+            'class': 'beeref.logging_beeref.BeeRotatingFileHandler',
             'formatter': 'verbose',
             'filename': logfile_name(),
             'maxBytes': 1024 * 1000,  # 1MB
