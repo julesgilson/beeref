@@ -1,3 +1,25 @@
+----
+
+Fork Info
+=========
+
+This fork was created as the original project appears abandoned, with PRs oustanding for over a year, and I needed the application to support the storage of BeeRef's database on a Windows Network Drive.
+
+The only changes made from the 0.3.0 version in the author's repo are:
+
+- Fix to a bug introduced after V0.2.0 (latest released package) that prevented execution
+   -  Cursor hotspot arguments changed from float to int (int required)
+- Fix to a bug introduced after V0.2.0 (latest released package) that prevented execution
+   - Class naming clash with Python logging module - application class name and filename changed
+- Change to fix error when opening/saving to network drive on Windows
+   - This appears to be a bug in the pathlib library rather than this application. Windows requires the network location part in a UNC path to be preceded by two slashes, due to escaping in this context this becomes four preceeding slashes. The original implementation only provided three and caused the error
+   - Change made to use four initial slashes if platform is detected as Windows, and path is a network location.
+- Updated version to v0.3.0-dev-jg
+
+**Only packaged for Windows, but should be no reason why it would not function as before on other systems if built.**
+
+----
+
 BeeRef — A Simple Reference Image Viewer
 ========================================
 
