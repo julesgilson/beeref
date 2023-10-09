@@ -30,6 +30,7 @@ import pathlib
 import shutil
 import sqlite3
 import tempfile
+import re
 
 from PyQt6 import QtGui
 
@@ -105,6 +106,12 @@ class SQLiteIO:
             self.scene.clear_save_ids()
 
         uri = pathlib.Path(self.filename).resolve().as_uri()
+        if os.name == 'nt':
+            networkRe = re.compile(r"^file:\/\/(\w{2,}.+)", re.IGNORECASE) # as in path library, a local windows path will always have a single letter drive part
+            reMatches = networkRe.match(uri)
+            if reMatches and len(reMatches.groups()):
+                #is a network location
+                uri = 'file:////' + reMatches.group(1)
         if self.readonly:
             uri = f'{uri}?mode=rw'
         self._connection = sqlite3.connect(uri, uri=True)
