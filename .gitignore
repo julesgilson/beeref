@@ -133,3 +133,5 @@ dmypy.json
 Gemfile.lock
 _site
 .bundle
+
+*.code-workspace
